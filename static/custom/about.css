@@ -1,0 +1,452 @@
+/* About Page Styles */
+.about-page {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 260px 20px 160px; /* Increased top padding from 160px to 260px */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    min-height: 300px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 500px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    animation: fadeInUp 1s ease-out;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+    animation: fadeInRight 1s ease-out 0.5s both;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.hero-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Content Navigation */
+.content-navigation {
+    background: #f8f9fa;
+    padding: 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-tabs {
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 20px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-btn:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.tab-btn.active {
+    color: #667eea;
+    border-bottom-color: #667eea;
+    background: white;
+}
+
+/* Content Container */
+.content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.tab-content {
+    display: none;
+    padding: 60px 0;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.tab-content h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+}
+
+.tab-content h2:after {
+    content: '';
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    display: block;
+    margin: 15px auto;
+    border-radius: 2px;
+}
+
+/* Mission Points */
+.mission-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.point {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.point:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.point-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.point h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    margin: 50px 0;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin: 50px 0;
+    animation: slideInFromLeft 0.6s ease-out;
+}
+
+.timeline-item:nth-child(even) {
+    animation: slideInFromRight 0.6s ease-out;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: #667eea;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 0 0 4px #667eea;
+    z-index: 10;
+}
+
+.timeline-content {
+    width: 45%;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-left: 55%;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    margin-right: 55%;
+}
+
+.timeline-content h3 {
+    color: #667eea;
+    margin-bottom: 10px;
+    font-size: 1.4rem;
+}
+
+.timeline-item:before {
+    content: attr(data-year);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -30px;
+    background: #333;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Values Grid */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.value-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    border-top: 5px solid #667eea;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.value-card h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Achievements */
+.achievements-list {
+    margin: 50px 0;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 25px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.achievement-item:hover {
+    transform: translateX(10px);
+}
+
+.achievement-year {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 25px;
+    min-width: 80px;
+    text-align: center;
+}
+
+.achievement-content h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+/* Stats Section */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+    padding: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    color: white;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        padding: 140px 20px 40px; /* Adjusted for mobile - increased top padding from 40px to 140px */
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .nav-tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .tab-btn {
+        padding: 15px 20px;
+        font-size: 1rem;
+    }
+    
+    .timeline:before {
+        left: 20px;
+    }
+    
+    .timeline-content {
+        width: calc(100% - 60px);
+        margin-left: 60px !important;
+        margin-right: 0 !important;
+    }
+    
+    .timeline-marker {
+        left: 20px;
+    }
+    
+    .timeline-item:before {
+        left: 20px;
+        transform: none;
+    }
+    
+    .achievement-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .achievement-year {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .mission-points,
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+}

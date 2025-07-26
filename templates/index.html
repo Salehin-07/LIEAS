@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load auth_extras %}
+
+{% block body %}
+<!-- Home -->
+<div class="home">
+    <!-- Hero Slider -->
+    <div class="hero_slider_container">
+        <div class="hero_slider owl-carousel">
+            <!-- Hero Slide -->
+            <div class="hero_slide">
+                <div class="hero_slide_background" 
+                     style="background-image: url('{% static "images/search_background.jpg" %}'); object-fit: cover;"></div>
+                <div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+                    <div class="hero_slide_content text-center">
+                        <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">
+                            Get your <span>Education</span> today!
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Slide -->
+            <div class="hero_slide">
+                <div class="hero_slide_background" 
+                     style="background-image: url('{% static "images/slider_background.jpg" %}');"></div>
+                <div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+                    <div class="hero_slide_content text-center">
+                        <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">
+                            Get your <span>Education</span> today!
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Slide -->
+            <div class="hero_slide">
+                <div class="hero_slide_background" 
+                     style="background-image: url('{% static "images/news_background.jpg" %}');"></div>
+                <div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+                    <div class="hero_slide_content text-center">
+                        <h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut">
+                            Get your <span>Education</span> today!
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero_slider_left hero_slider_nav trans_200">
+            <span class="trans_200">prev</span>
+        </div>
+        <div class="hero_slider_right hero_slider_nav trans_200">
+            <span class="trans_200">next</span>
+        </div>
+    </div>
+</div>
+
+<div class="hero_boxes">
+    <div class="hero_boxes_inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 hero_box_col">
+                    <div class="hero_box d-flex flex-row align-items-center justify-content-start">
+                        <img src="{% static 'images/books.svg' %}" class="svg" alt="Books">
+                        <div class="hero_box_content">
+                            <h2 class="hero_box_title">Our Programs</h2>
+                            <a href="{% url 'courses' %}" class="hero_box_link">view more</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 hero_box_col">
+                    <div class="hero_box d-flex flex-row align-items-center justify-content-start">
+                        <img src="{% static 'images/professor.svg' %}" class="svg" alt="Professor">
+                        <div class="hero_box_content">
+                            <h2 class="hero_box_title">Our Teachers</h2>
+                            <a href="{% url 'teachers' %}" class="hero_box_link">view more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<!-- Popular Courses - Only show if courses exist -->
+{% if courses %}
+<div class="popular page_section">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title text-center">
+                    <h1>Popular Courses</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row course_boxes">
+            <!-- Popular Course Item -->
+            {% for course in courses %}
+            <div class="col-lg-4 course_box">
+                <div class="card">
+                    <img class="card-img-top" src="{{ course.img_url }}" alt="Course">
+                    <div class="card-body text-center">
+                        <div class="card-title">
+                            <a href="{% url 'courses' %}">{{ course.title }}</a>
+                        </div>
+                        <div class="card-text">
+                            {{ course.description }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+<!-- Services - Only show if services exist -->
+{% if services %}
+<div class="services page_section">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title text-center">
+                    <h1>Our Services</h1>
+                </div>
+            </div>
+        </div>
+        {% for service in services %}
+        <div class="row services_row">
+            <div class="col-lg-4 service_item text-left d-flex flex-column align-items-start justify-content-start">
+                <div class="icon_container d-flex flex-column justify-content-end">
+                    <img src="{{ service.img_url }}" alt="Service">
+                </div>
+                <h3>{{ service.title }}</h3>
+                <p>
+                    {{ service.description }}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<!-- Testimonials - Only show if testimonials exist -->
+{% if testimonials %}
+<div class="testimonials page_section">
+    <div class="testimonials_background_container prlx_parent">
+        <div class="testimonials_background prlx" 
+             style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI_itROeXcLOHfHg6nopq1hJbkwZYnjD0KkL76ylEYM0neEXAd2qyyS6dP&s=10');"></div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title text-center">
+                    <h1>What our students say</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="testimonials_slider_container">
+                    <!-- Testimonials Slider -->
+                    <div class="owl-carousel owl-theme testimonials_slider">
+                      {% for testimonial in testimonials %}
+                        <!-- Testimonials Item -->
+                        <div class="owl-item">
+                            <div class="testimonials_item text-center">
+                                <div class="quote">"</div>
+                                <p class="testimonials_text">
+                                    {{ testimonial.description }}
+                                </p>
+                                <div class="testimonial_user">
+                                    <div class="testimonial_image mx-auto">
+                                        <img src="{{ testimonial.img_url }}" alt="User">
+                                    </div>
+                                    <div class="testimonial_name">{{ testimonial.name }}</div>
+                                    <div class="testimonial_title">{{ testimonial.testimonial_title }}</div>
+                                </div>
+                            </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Events - Only show if events exist -->
+{% if events %}
+<div class="events page_section">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title text-center">
+                    <h1>Upcoming Events</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="event_items">
+          {% for event in events %}
+            <!-- Event Item -->
+            <div class="row event_item">
+                <div class="col">
+                    <div class="row d-flex flex-row align-items-end">
+                        <div class="col-lg-2 order-lg-1 order-2">
+                            <div class="event_date d-flex flex-column align-items-center justify-content-center">
+                                <div class="event_day">{{ event.event_date }}</div>
+                                <div class="event_month">{{ event.event_month }}</div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 order-lg-2 order-3">
+                            <div class="event_content">
+                                <div class="event_name">
+                                    <a class="trans_200" href="#">{{ event.title }}</a>
+                                </div>
+                                <div class="event_location">{{ event.location }}</div>
+                                <p>
+                                  {{ event.description }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 order-lg-3 order-1">
+                            <div class="event_image">
+                                <img src="{{ event.img_url}}" alt="Event">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

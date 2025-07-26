@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load auth_extras %}
+
+{% block body %}
+{% if courses %}
+
+	<!-- Popular -->
+	<div class="popular page_section">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title text-center">
+						<h1>Popular Courses</h1>
+					</div>
+				</div>
+			</div>
+
+			<div class="row course_boxes">
+				{% for course in courses %}
+				<!-- Popular Course Item -->
+				<div class="col-lg-4 course_box">
+					<div class="card">
+						<img class="card-img-top" src="{{ course.img_url }}" alt="Course Image" onerror="this.src='{% static 'images/placeholder.jpg' %}'">
+						<div class="card-body text-center">
+							<div class="card-title">
+								<a href="{% url 'courses_id' course.pk %}">{{ course.title }}</a>
+							</div>
+							<div class="card-text">{{ course.sub_title|default:"" }}</div>
+						</div>
+						<div class="price_box d-flex flex-row align-items-center">
+							<div class="course_author_image">
+								<img style="object-fit:cover;" src="{{ course.author_img_url }}" alt="Author Image" >
+							</div>
+							<div class="course_author_name">{{ course.author_name }}, <span>Author</span></div>
+							<div class="course_price d-flex flex-column align-items-center justify-content-center">
+								<span>
+									{% if course.course_fee == 0 %}
+										Free
+									{% else %}
+										${{ course.course_fee }}
+									{% endif %}
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>		
+	</div>
+{% else %}
+	<!-- No courses message -->
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				<h2>No courses available at the moment.</h2>
+			</div>
+		</div>
+	</div>
+{% endif %}
+{% endblock %}

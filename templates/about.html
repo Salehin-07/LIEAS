@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <title>About Us - LIEAS</title>
+    <meta name="description" content="Learn more about our school's history, mission, and values.">
+    <link rel="stylesheet" href="{% static 'custom/about.css' %}">
+{% endblock %}
+
+{% block body %}
+    <main class="about-page">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">About Our School</h1>
+                <p class="hero-subtitle">Inspiring minds, building futures since 2025</p>
+            </div>
+        </section>
+
+        <!-- Navigation Tabs -->
+        <section class="content-navigation">
+            <div class="nav-tabs">
+                {% if missions %}
+                    <button class="tab-btn active" data-tab="mission">Our Mission</button>
+                {% endif %}
+                {% if history %}
+                    <button class="tab-btn{% if not missions %} active{% endif %}" data-tab="history" id="history-tab">History</button>
+                {% endif %}
+                {% if values %}
+                    <button class="tab-btn{% if not missions and not history %} active{% endif %}" data-tab="values">Our Values</button>
+                {% endif %}
+                {% if achievements %}
+                    <button class="tab-btn{% if not missions and not history and not values %} active{% endif %}" data-tab="achievements">Achievements</button>
+                {% endif %}
+            </div>
+        </section>
+
+        <!-- Content Sections -->
+        <div class="content-container">
+            <!-- Mission Tab -->
+            {% if missions %}
+            <section class="tab-content active" id="mission">
+                <div class="content-wrapper">
+                    <h2>Our Mission</h2>
+                    <p>We are committed to providing excellence in education, fostering critical thinking, and preparing students for success in an ever-changing world. Our dedicated faculty and staff work together to create a nurturing environment where every student can reach their full potential.</p>
+                    
+                    <div class="mission-points">
+                      {% for mission in missions %}
+                        <div class="point">
+                            <div class="point-icon">{{ mission.emoji }}</div>
+                            <h3>{{ mission.title }}</h3>
+                            <p>{{ mission.description }}</p>
+                        </div>
+                      {% endfor %}
+                    </div>
+                </div>
+            </section>
+            {% endif %}
+
+            <!-- History Tab -->
+            {% if history %}
+            <section class="tab-content{% if not missions %} active{% endif %}" id="history">
+                <div class="content-wrapper">
+                    <h2>Our History</h2>
+                    <div class="timeline">
+                      {% for hist in history %}
+                        <div class="timeline-item" data-year="{{ hist.year }}">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h3>{{ hist.title }}</h3>
+                                <p>{{ hist.description }}</p>
+                            </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                </div>
+            </section>
+            {% endif %}
+
+            <!-- Values Tab -->
+            {% if values %}
+            <section class="tab-content{% if not missions and not history %} active{% endif %}" id="values">
+                <div class="content-wrapper">
+                    <h2>Our Core Values</h2>
+                    <div class="values-grid">
+                      {% for value in values %}
+                        <div class="value-card">
+                            <h3>{{ value.title }}</h3>
+                            <p>{{ value.description }}</p>
+                        </div>
+                      {% endfor %}
+                    </div>
+                </div>
+            </section>
+            {% endif %}
+
+            <!-- Achievements Tab -->
+            {% if achievements %}
+            <section class="tab-content{% if not missions and not history and not values %} active{% endif %}" id="achievements">
+                <div class="content-wrapper">
+                    <h2>Our Achievements</h2>
+                    <div class="achievements-list">
+                      {% for achievement in achievements %}
+                        <div class="achievement-item">
+                            <div class="achievement-year">{{ achievement.year }}</div>
+                            <div class="achievement-content">
+                                <h3>{{ achievement.award_name }}</h3>
+                                <p>{{ achievement.awarding_reason }}</p>
+                            </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+                    {% if information %}
+                        {% for info in information %}
+                        <div class="stats-section">
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="{{ info.pass_rate }}">0</div>
+                                <div class="stat-label">% Passing Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="{{ info.students_number }}">0</div>
+                                <div class="stat-label">Students Enrolled</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="{{ info.teacher_number }}">0</div>
+                                <div class="stat-label">Teachers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="{{ info.awards }}">0</div>
+                                <div class="stat-label">Awards Won</div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </section>
+            {% endif %}
+
+            <!-- Fallback message if no content is available -->
+            {% if not missions and not history and not values and not achievements %}
+            <section class="no-content">
+                <div class="content-wrapper">
+                    <h2>Content Coming Soon</h2>
+                    <p>We're working on adding more information about our school. Please check back later!</p>
+                </div>
+            </section>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'custom/about.js' %}"></script>
+    <script>
+        // Admin panel access functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            let historyClickCount = 0;
+            let resetTimer;
+            const historyTab = document.getElementById('history-tab');
+            
+            if (historyTab) {
+                historyTab.addEventListener('click', function(e) {
+                    historyClickCount++;
+                    
+                    // Clear existing timer
+                    clearTimeout(resetTimer);
+                    
+                    // Check if clicked 20 times
+                    if (historyClickCount === 50) {
+                        // Reset counter
+                        historyClickCount = 0;
+                        
+                        // Use Django URL for admin panel
+                        const adminUrl = '{% url "admin:index" %}';
+                        
+                        // Open admin panel in new tab
+                        window.open(adminUrl, '_blank');
+                        
+                        // Optional: Show a subtle notification (remove if not wanted)
+                        console.log('Admin panel opened');
+                    }
+                    
+                    // Reset counter after 10 seconds of inactivity
+                    resetTimer = setTimeout(() => {
+                        historyClickCount = 0;
+                    }, 10000);
+                });
+            }
+        });
+    </script>
+{% endblock %}

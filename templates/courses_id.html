@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load auth_extras %}
+
+{% block head %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="{% static 'custom/style.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Hero Section -->
+        <div class="hero-section" style="background-image: linear-gradient(rgba(0,123,255,0.85), rgba(0,86,179,0.85)), url('{{ course.img_url }}'); background-size: cover; background-position: center;">
+            <div class="container">
+                <div class="hero-content fade-in show">
+                    <div class="class-badge mb-3">
+                        <span class="badge badge-light px-3 py-2">Academic Class</span>
+                    </div>
+                    <h1 class="hero-title">{{ course.title }}</h1>
+                    {% if course.sub_title %}
+                    <p class="hero-subtitle">{{ course.sub_title }}</p>
+                    {% endif %}
+                    <div class="hero-divider"></div>
+                    <p class="hero-description">{{ course.description|truncatewords:30 }}</p>
+                    <div class="hero-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span><strong>Class Fee:</strong> {% if course.course_fee > 0 %}${{ course.course_fee }}{% else %}Free{% endif %}</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span><strong>Instructor:</strong> {{ course.author_name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-5">
+            <div class="row">
+                <!-- Main Content -->
+                <div class="col-lg-8">
+                    <!-- Class Overview -->
+                    <div class="card mb-4 professional-card fade-in">
+                        <div class="card-header bg-gradient-dark text-white">
+                            <h3 class="mb-0"><i class="fas fa-graduation-cap mr-2"></i>Class Overview</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="class-image-container">
+                                        <img src="{{ course.img_url }}" class="img-fluid rounded shadow-sm" alt="{{ course.title }}" style="width: 100%; height: 220px; object-fit: cover;">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <p class="lead text-dark">{{ course.description|linebreaks }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Learning Objectives -->
+                    <div class="card mb-4 professional-card fade-in">
+                        <div class="card-header bg-gradient-success text-white">
+                            <h3 class="mb-0"><i class="fas fa-bullseye mr-2"></i>Learning Objectives</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="objective-list">
+                                        <div class="objective-item">
+                                            <i class="fas fa-check-circle text-success mr-3"></i>
+                                            <span>Master fundamental concepts and principles</span>
+                                        </div>
+                                        <div class="objective-item">
+                                            <i class="fas fa-check-circle text-success mr-3"></i>
+                                            <span>Develop practical skills through hands-on activities</span>
+                                        </div>
+                                        <div class="objective-item">
+                                            <i class="fas fa-check-circle text-success mr-3"></i>
+                                            <span>Apply theoretical knowledge to real-world scenarios</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="objective-list">
+                                        <div class="objective-item">
+                                            <i class="fas fa-check-circle text-success mr-3"></i>
+                                            <span>Understand industry standards and best practices</span>
+                                        </div>
+                                        <div class="objective-item">
+                                            <i class="fas fa-check-circle text-success mr-3"></i>
+                                            <span>Develop critical thinking and problem-solving abilities</span>
+                                        </div>
+                                        <div class="objective-item">
+                                            <i class="fas fa-check-circle text-success mr-3"></i>
+                                            <span>Build professional competency and expertise</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Class Features -->
+                    <div class="card mb-4 professional-card fade-in">
+                        <div class="card-header bg-gradient-info text-white">
+                            <h3 class="mb-0"><i class="fas fa-star mr-2"></i>Class Features & Resources</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-item">
+                                        <div class="feature-icon bg-primary">
+                                            <i class="fas fa-video"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h5 class="feature-title">Interactive Lectures</h5>
+                                            <p class="feature-description">Engaging video lectures with comprehensive explanations</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-item">
+                                        <div class="feature-icon bg-success">
+                                            <i class="fas fa-tasks"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h5 class="feature-title">Assignments & Projects</h5>
+                                            <p class="feature-description">Practical exercises to reinforce learning outcomes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-item">
+                                        <div class="feature-icon bg-warning">
+                                            <i class="fas fa-certificate"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h5 class="feature-title">Certificate of Completion</h5>
+                                            <p class="feature-description">Official certificate upon successful completion</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="feature-item">
+                                        <div class="feature-icon bg-info">
+                                            <i class="fas fa-users"></i>
+                                        </div>
+                                        <div class="feature-content">
+                                            <h5 class="feature-title">Collaborative Learning</h5>
+                                            <p class="feature-description">Connect with peers and instructors for support</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Class Information -->
+                    <div class="card mb-4 professional-card fade-in">
+                        <div class="card-header bg-gradient-secondary text-white">
+                            <h4 class="mb-0"><i class="fas fa-info-circle mr-2"></i>Class Information</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Class Title:</span>
+                                    <span class="info-value">{{ course.title }}</span>
+                                </div>
+                                {% if course.sub_title %}
+                                <div class="info-item">
+                                    <span class="info-label">Subtitle:</span>
+                                    <span class="info-value">{{ course.sub_title }}</span>
+                                </div>
+                                {% endif %}
+                                <div class="info-item">
+                                    <span class="info-label">Class Fee:</span>
+                                    <span class="info-value">
+                                        {% if course.course_fee > 0 %}
+                                            <span class="price-tag">${{ course.course_fee }}</span>
+                                        {% else %}
+                                            <span class="price-tag free">Free</span>
+                                        {% endif %}
+                                    </span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Instructor:</span>
+                                    <span class="info-value">{{ course.author_name }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Enrollment Card -->
+                    <div class="card mb-4 professional-card enrollment-card fade-in">
+                        <div class="card-header bg-gradient-primary text-white text-center">
+                            <h4 class="mb-0"><i class="fas fa-user-graduate mr-2"></i>Enroll Today</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="enrollment-price">
+                                {% if course.course_fee > 0 %}
+                                    <span class="price-main">${{ course.course_fee }}</span>
+                                {% else %}
+                                    <span class="price-main free">FREE</span>
+                                {% endif %}
+                            </div>
+                            <p class="enrollment-note">One-time enrollment for full access</p>
+                            <a href="{% url 'enroll' %}" class="btn btn-primary btn-lg btn-block enrollment-btn mb-3">
+                                <i class="fas fa-user-plus mr-2"></i>Enroll Now
+                            </a>
+                            <div class="guarantee-badge">
+                                <i class="fas fa-shield-alt mr-1"></i>
+                                <small>Academic Excellence Guarantee</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Instructor Profile -->
+                    <div class="card mb-4 professional-card fade-in">
+                        <div class="card-header bg-gradient-dark text-white">
+                            <h4 class="mb-0"><i class="fas fa-chalkboard-teacher mr-2"></i>Meet Your Instructor</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="instructor-profile">
+                                <div class="instructor-avatar">
+                                    <img src="{{ course.author_img_url }}" class="instructor-image" alt="{{ course.author_name }}" width="90" height="90">
+                                </div>
+                                <div class="instructor-info">
+                                    <h5 class="instructor-name">{{ course.author_name }}</h5>
+                                    <p class="instructor-title">Expert Educator</p>
+                                    <p class="instructor-bio">{{ course.author_bio }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- JavaScript for Animations -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('.fade-in');
+    elements.forEach(el => {
+        el.classList.add('show');
+    });
+});
+</script>
+{% endblock %}

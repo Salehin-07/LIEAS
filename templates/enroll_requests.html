@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+{% load static %}
+{% load auth_extras %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'custom/enroll_requests.css' %}">
+{% endblock %}
+
+{% block body %}
+    <div class="enroll-container">
+        <div class="enroll-header">
+            <h1>Student Enrollment Requests</h1>
+            <p>Active enrollment applications</p>
+        </div>
+        
+        <div class="enroll-search-section">
+            <input type="text" id="enrollSearchInput" placeholder="Search by student name, class, or father's name..." class="enroll-search-input">
+            <div class="enroll-filter-buttons">
+                <button class="enroll-filter-btn enroll-filter-active" data-filter="all">All Classes</button>
+              {% for class_name in classname %}
+                <button class="enroll-filter-btn" data-filter="{{ class_name.value }}">{{ class_name.name }}</button>
+              {% endfor %}
+            </div>
+        </div>
+        
+        <div class="enroll-grid" id="enrollmentGrid">
+            {% for request in enroll_requests %}
+                {% if request.status %}
+                <div class="enroll-card" data-class="{{ request.enroll_class }}" data-student="{{ request.student_name|lower }}" data-father="{{ request.father_name|lower }}">
+                    <div class="enroll-card-header">
+                        <h3 class="enroll-student-name">{{ request.student_name }}</h3>
+                        <span class="enroll-id">ID: {{ request.id }}</span>
+                    </div>
+                    
+                    <div class="enroll-card-body">
+                        <div class="enroll-info-row">
+                            <div class="enroll-info-group">
+                                <label>Date of Birth:</label>
+                                <span>{{ request.date_of_birth|date:"F d, Y" }}</span>
+                            </div>
+                            <div class="enroll-info-group">
+                                <label>Gender:</label>
+                                <span>{{ request.gender }}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="enroll-info-row">
+                            <div class="enroll-info-group">
+                                <label>Class:</label>
+                                <span class="enroll-class-badge">{{ request.enroll_class }}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="enroll-info-row">
+                            <div class="enroll-info-group">
+                                <label>Father's Name:</label>
+                                <span>{{ request.father_name }}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="enroll-info-row">
+                            <div class="enroll-info-group">
+                                <label>Mother's Name:</label>
+                                <span>{{ request.mother_name }}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="enroll-info-row">
+                            <div class="enroll-info-group">
+                                <label>Phone:</label>
+                                <span class="enroll-phone">{{ request.phone }}</span>
+                            </div>
+                            {% if request.e_mail %}
+                            <div class="enroll-info-group">
+                                <label>Email:</label>
+                                <span class="enroll-email">{{ request.e_mail }}</span>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="enroll-info-row">
+                            <div class="enroll-info-group enroll-info-full-width">
+                                <label>Address:</label>
+                                <span>{{ request.address }}</span>
+                            </div>
+                        </div>
+                        
+                        {% if request.additional_info %}
+                        <div class="enroll-info-row">
+                            <div class="enroll-info-group enroll-info-full-width">
+                                <label>Additional Information:</label>
+                                <span class="enroll-additional-info">{{ request.additional_info }}</span>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="enroll-card-footer">
+                        <span class="enroll-status-badge enroll-status-active">
+                          Active</span>
+                        <form action="{% url 'enroll-requests' %}" method='POST'>
+                        {% csrf_token %}
+                        <input type="hidden" name="enroll_id" value="{{ request.id }}">
+                        <button class="enroll-process-btn" data-id="{{ request.id }}" onclick="markAsProcessed({{ request.id }}, this)">
+                            <svg class="enroll-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M20 6L9 17l-5-5"></path>
+                            </svg>
+                            Mark as Processed
+                        </button>
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            {% empty %}
+                <div class="enroll-empty-state">
+                    <h3>No Active Enrollment Requests</h3>
+                    <p>There are currently no active enrollment requests to display.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'custom/enroll_requests.js' %}"></script>
+{% endblock %}

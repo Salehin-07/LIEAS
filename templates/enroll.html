@@ -1,0 +1,327 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load auth_extras %}
+
+{% block head %}
+<link href="{% static 'custom/enroll.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-overlay">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 text-white font-weight-bold mb-4">
+                        Get Enlightened with the Light of Wisdom
+                    </h1>
+                    <p class="lead text-white mb-4">
+                        Join us and build a bright future for your child. Quality education, experienced teachers, and the opportunity to study in a beautiful environment.
+                    </p>
+                    {% for info in information %}
+                    <div class="mb-4">
+                        <div class="row">
+                            <div class="col-sm-4 text-center mb-3">
+                                <div class="stat-number text-white">{{ info.students_number }}+</div>
+                                <div class="stat-label text-white-50">
+                                    Students
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-center mb-3">
+                                <div class="stat-number text-white">{{ info.pass_rate }}%</div>
+                                <div class="stat-label text-white-50">
+                                    Pass Rate
+                                </div>
+                            </div>
+                            <div class="col-sm-4 text-center mb-3">
+                                <div class="stat-number text-white">{{ info.teacher_number }}+</div>
+                                <div class="stat-label text-white-50">Experienced Teachers</div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <a href="#enrollment" class="btn btn-warning btn-lg px-5 py-3 font-weight-bold">
+                        <i class="fas fa-arrow-right me-2"></i>Join Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Messages flashing -->
+{% if messages %}
+<div class="container mt-3">
+    {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% elif message.tags == 'success' %}success{% else %}info{% endif %} alert-dismissible fade show" role="alert">
+            <strong>
+                {% if message.tags == 'error' %}
+                    <i class="fas fa-exclamation-circle"></i> Error!
+                {% elif message.tags == 'success' %}
+                    <i class="fas fa-check-circle"></i> Success!
+                {% endif %}
+            </strong>
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<!-- Why Choose Us Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="fw-bold text-primary">Why Choose Us?</h2>
+                <p class="lead text-muted">We not only build your child but also their character.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card h-100 text-center p-4 bg-white rounded shadow">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-users text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold">Experienced Teachers</h4>
+                    <p class="text-muted">Quality education under the supervision of highly educated and skilled teachers</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card h-100 text-center p-4 bg-white rounded shadow">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-book text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold">Modern Teaching Technique</h4>
+                    <p class="text-muted">Modern teaching methods, digital classrooms and rich libraries</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card h-100 text-center p-4 bg-white rounded shadow">
+                    <div class="feature-icon mb-3">
+                        <i class="fas fa-graduation-cap text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold">Complete Development</h4>
+                    <p class="text-muted">Focus on both academic excellence and character development</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Class Programs Section -->
+<section id="programs" class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="fw-bold text-primary">Our Classes</h2>
+                <p class="lead text-muted">From primary to secondary education.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="program-card bg-white rounded shadow p-4">
+                    <div class="program-icon mb-3">
+                        <i class="fas fa-child text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold">Primary Section</h4>
+                    <p class="text-muted mb-3">1st to 5th class</p>
+                    <ul class="list-unstyled text-muted mb-3">
+                        <li><i class="fas fa-check text-success me-2"></i>English, Bangla and Arabic</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Moral education</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Creative activities</li>
+                    </ul>
+                    <div class="program-price mb-3">
+                        <span class="price-amount">৩,০০০</span>
+                        <span class="price-period">টাকা/মাস</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="program-card bg-white rounded shadow p-4">
+                    <div class="program-icon mb-3">
+                        <i class="fas fa-user-graduate text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold">Lower Secondary</h4>
+                    <p class="text-muted mb-3">Class 6 to 8</p>
+                    <ul class="list-unstyled text-muted mb-3">
+                        <li><i class="fas fa-check text-success me-2"></i>English proficiency</li>
+                        <li><i class="fas fa-check text-success me-2"></i>ICT</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Creative questioning method</li>
+                    </ul>
+                    <div class="program-price mb-3">
+                        <span class="price-amount">৪,০০০</span>
+                        <span class="price-period">টাকা/মাস</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="program-card bg-white rounded shadow p-4">
+                    <div class="program-icon mb-3">
+                        <i class="fas fa-graduation-cap text-primary"></i>
+                    </div>
+                    <h4 class="fw-bold">Secondary</h4>
+                    <p class="text-muted mb-3">Class 9 to 10</p>
+                    <ul class="list-unstyled text-muted mb-3">
+                        <li><i class="fas fa-check text-success me-2"></i>Science, Commerce and Humanities</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Career Guidance</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Model tests and exams</li>
+                    </ul>
+                    <div class="program-price mb-3">
+                        <span class="price-amount">৫,০০০</span>
+                        <span class="price-period">টাকা/মাস</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Enrollment Form Section -->
+<section id="enrollment" class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="fw-bold">Apply for Admission</h2>
+                <p class="lead">Start your child's admission process by filling out the form below</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="enrollment-form bg-white rounded shadow p-5">
+                    <form method="POST" action="{% url 'enroll' %}">
+                        {% csrf_token %}
+                        <h3 class="text-primary fw-bold mb-4">Student Information</h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-dark fw-bold">Student Name:</label>
+                                <input type="text" class="form-control" name="student_name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-dark fw-bold">Date of Birth:</label>
+                                <input type="date" class="form-control" name="date_of_birth" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-dark fw-bold">Gender:</label>
+                                <select class="form-control h-75" name="gender" required>
+                                    <option value="">Select</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-dark fw-bold">Class you wish to enroll in:</label>
+                                <select class="form-control h-75" name="class" required>
+                                    <option value="">Select
+                                    </option>
+                                  {% for class_name in classname %}  
+                                    <option value="{{ class_name.value }}">{{ class_name.name }}</option>
+                                  {% endfor %}  
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-dark fw-bold">Father's Name:</label>
+                                <input type="text" class="form-control" name="father_name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-dark fw-bold">Mother's Name:</label>
+                                <input type="text" class="form-control" name="mother_name" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-dark fw-bold">Phone:</label>
+                                <input type="tel" class="form-control" name="phone" placeholder="01XXXXXXXXX" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label text-dark fw-bold">E-mail:</label>
+                                <input type="email" class="form-control" name="email">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label text-dark fw-bold">Current Address:</label>
+                            <textarea class="form-control" name="address" rows="3" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label text-dark fw-bold">Extra Information:</label>
+                            <textarea class="form-control" name="additional_info" rows="3" placeholder="Write if you have any special needs or information."></textarea>
+                        </div>
+
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" name="agree_terms" required>
+                            <label class="form-check-label text-dark">
+                                I agree to abide by all school rules and regulations.
+                            </label>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-warning btn-lg px-5 py-3 fw-bold">
+                                <i class="fas fa-paper-plane me-2"></i>Apply
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Form validation
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const requiredFields = this.querySelectorAll('[required]');
+        let isValid = true;
+
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                field.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                field.classList.remove('is-invalid');
+                field.classList.add('is-valid');
+            }
+        });
+
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+
+    // Phone number validation
+    document.querySelector('input[name="phone"]').addEventListener('input', function(e) {
+        const phone = e.target.value;
+        const phonePattern = /^01[3-9]\d{8}$/;
+        
+        if (phone && !phonePattern.test(phone)) {
+            e.target.classList.add('is-invalid');
+        } else {
+            e.target.classList.remove('is-invalid');
+        }
+    });
+</script>
+{% endblock %}

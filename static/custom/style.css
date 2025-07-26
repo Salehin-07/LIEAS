@@ -1,0 +1,520 @@
+/* Professional Class Detail Page Styles */
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Content Wrapper - Pushes content below navbar */
+.content-wrapper {
+    padding-top: 80px; /* Adjust based on navbar height */
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    padding: 3rem 0;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 3.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    line-height: 1.2;
+    animation: fadeInDown 1s ease;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    animation: fadeInUp 1s ease 0.2s;
+}
+
+.hero-divider {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0.5));
+    margin: 2rem auto;
+    border-radius: 2px;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    opacity: 0.9;
+}
+
+.hero-meta {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    margin: 0.5rem;
+}
+
+.meta-item i {
+    font-size: 1.2rem;
+    margin-right: 0.75rem;
+    color: #f39c12;
+}
+
+/* Card Styles */
+.professional-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.professional-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    padding: 1.5rem;
+    font-weight: 600;
+    border-radius: 15px 15px 0 0;
+}
+
+.bg-gradient-dark {
+    background: linear-gradient(135deg, #2c3e50, #34495e) !important;
+}
+
+.bg-gradient-success {
+    background: linear-gradient(135deg, #27ae60, #2ecc71) !important;
+}
+
+.bg-gradient-info {
+    background: linear-gradient(135deg, #3498db, #5dade2) !important;
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #3498db, #2980b9) !important;
+}
+
+.bg-gradient-secondary {
+    background: linear-gradient(135deg, #6c757d, #868e96) !important;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Class Image Container */
+.class-image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.class-image-container img {
+    transition: transform 0.5s ease;
+}
+
+.class-image-container:hover img {
+    transform: scale(1.05);
+}
+
+.class-image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(52, 152, 219, 0.2));
+    pointer-events: none;
+}
+
+/* Learning Objectives */
+.objective-list {
+    padding: 1rem 0;
+}
+
+.objective-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: rgba(46, 204, 113, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid #2ecc71;
+    transition: all 0.3s ease;
+}
+
+.objective-item:hover {
+    background: rgba(46, 204, 113, 0.1);
+    transform: translateX(5px);
+}
+
+.objective-item i {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    color: #27ae60;
+}
+
+.objective-item span {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #2c3e50;
+}
+
+/* Feature Items */
+.feature-item {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    background: #e9ecef;
+    transform: translateY(-3px);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.25rem;
+    color: white;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.feature-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.feature-description {
+    font-size: 0.95rem;
+    color: #6c757d;
+    line-height: 1.5;
+}
+
+/* Information Grid */
+.info-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background: rgba(52, 152, 219, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid #3498db;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.info-value {
+    color: #495057;
+    font-size: 1rem;
+    text-align: right;
+}
+
+.price-tag {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #27ae60;
+    background: rgba(46, 204, 113, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+.price-tag.free {
+    color: #3498db;
+    background: rgba(52, 152, 219, 0.1);
+}
+
+/* Enrollment Card */
+.enrollment-card {
+    border: 2px solid #3498db;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    position: sticky;
+    top: 90px;
+}
+
+.enrollment-price {
+    margin-bottom: 1.5rem;
+}
+
+.price-main {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.price-main.free {
+    color: #3498db;
+}
+
+.enrollment-note {
+    color: #6c757d;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+}
+
+.enrollment-btn {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border: none;
+    padding: 0.85rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.enrollment-btn:hover {
+    background: linear-gradient(135deg, #2980b9, #21618c);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.guarantee-badge {
+    background: rgba(46, 204, 113, 0.1);
+    color: #27ae60;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Instructor Profile */
+.instructor-profile {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.instructor-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #3498db;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+}
+
+.instructor-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.instructor-title {
+    color: #6c757d;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+.instructor-bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #495057;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .content-wrapper {
+        padding-top: 70px;
+    }
+
+    .hero-section {
+        min-height: 500px;
+        padding: 2.5rem 0;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+
+    .instructor-profile {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .info-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .info-value {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        min-height: 400px;
+        padding: 2rem 0;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .price-main {
+        font-size: 2.8rem;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .feature-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .feature-icon {
+        margin-bottom: 1rem;
+        margin-right: 0;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #2980b9, #21618c);
+}
+
+/* Accessibility */
+.btn:focus,
+.card:focus {
+    outline: 3px solid #3498db;
+    outline-offset: 3px;
+}
+
+/* Print Styles */
+@media print {
+    .enrollment-card,
+    .guarantee-badge {
+        display: none;
+    }
+
+    .hero-section {
+        background: #3498db !important;
+        color: white !important;
+    }
+}

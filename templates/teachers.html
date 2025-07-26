@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'custom/teachers.css' %}">
+    <title>Our Teachers - School</title>
+{% endblock %}
+
+{% block body %}
+    <div class="teachers-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Meet Our Dedicated Teachers</h1>
+            <p class="hero-subtitle">Passionate educators committed to nurturing young minds and fostering academic excellence</p>
+        </div>
+        <div class="hero-overlay"></div>
+    </div>
+
+    <div class="teachers-container">
+        <div class="section-header">
+            <h2>Our Faculty</h2>
+            <p>Get to know the amazing educators who make learning an inspiring journey</p>
+        </div>
+
+        <div class="teachers-grid" id="teachersGrid">
+            {% for teacher in teachers %}
+            <div class="teacher-card" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:'100' }}">
+                <div class="teacher-image-container">
+                    <img src="{{ teacher.img_url }}" alt="{{ teacher.name }}" class="teacher-image" loading="lazy">
+                    <div class="teacher-overlay">
+                        <div class="social-links">
+                            {% if teacher.email %}
+                            <a href="mailto:{{ teacher.email }}" class="social-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            {% endif %}
+                            {% if teacher.phone %}
+                            <a href="tel:{{ teacher.phone }}" class="social-link">
+                                <i class="fas fa-phone"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="teacher-info">
+                    <h3 class="teacher-name">{{ teacher.name }}</h3>
+                    <p class="teacher-subject">{{ teacher.subject }}</p>
+                    <p class="teacher-qualification">{{ teacher.qualification }}</p>
+                    <p class="teacher-experience">{{ teacher.experience }} years experience</p>
+                    
+                    {% if teacher.bio %}
+                    <div class="teacher-bio">
+                        <p>{{ teacher.bio|truncatewords:20 }}</p>
+                    </div>
+                    {% endif %}
+                    
+                    <button class="view-profile-btn" onclick="openTeacherModal('{{ teacher.id }}')">
+                        View Profile
+                    </button>
+                </div>
+            </div>
+            {% empty %}
+            <div class="no-teachers">
+                <i class="fas fa-users"></i>
+                <h3>No Teachers Found</h3>
+                <p>Teachers information will be available soon.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'custom/teachers.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true
+      });
+    </script>
+{% endblock %}
