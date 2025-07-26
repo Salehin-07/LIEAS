@@ -6,5 +6,7 @@ __pycache__/
 *.pyc
 
 # Django migration files
-*/migrations/*
-!*/migrations/__init__.py
+leader/migrations/
+*/migrations/
+**/migrations/
+!**/migrations/__init__.py
