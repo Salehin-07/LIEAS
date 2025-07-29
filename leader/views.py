@@ -6,23 +6,22 @@ from .decorators import *
 
 def index(request):
     """Home page view"""
-    # all models 
-    all_links = Links.objects.all()
-    all_courses = Courses.objects.all()
-    all_services = Services.objects.all()
-    all_testimonials = Testimonials.objects.all()
-    all_events = Events.objects.all()
-    
+    # newest 5 from each model
+    all_links = Links.objects.all()  # order doesn't matter here
+    all_courses = Courses.objects.order_by('-id')[:5]
+    all_services = Services.objects.order_by('-id')[:5]
+    all_testimonials = Testimonials.objects.order_by('-id')[:5]
+    all_events = Events.objects.order_by('-id')[:5]
     
     context = {
-      'links':all_links,
-      'courses':all_courses,
-      'services':all_services,
-      'testimonials':all_testimonials,
-      'events':all_events,
+        'links': all_links,
+        'courses': all_courses,
+        'services': all_services,
+        'testimonials': all_testimonials,
+        'events': all_events,
     }
     return render(request, 'index.html', context)
-
+    
 def about(request):
     """About page view"""
     
