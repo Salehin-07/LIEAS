@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.urls import reverse
+from django.utils import timezone
 
 # Create your models here.
 
@@ -349,3 +350,20 @@ class ClassName(models.Model):
   
   def __str__(self):
     return self.name
+
+
+# /notice page 
+
+class Notice(models.Model):
+    title = models.CharField(max_length=250)
+    description = models.TextField()
+    pdf_link = models.URLField(blank=True, null=True)  # Made optional
+    date_posted = models.DateField(default=timezone.now)  # Fixed this line
+    
+    class Meta:
+        verbose_name = "Notice"
+        verbose_name_plural = "Notices"
+        ordering = ['-date_posted']  # Show newest notices first
+    
+    def __str__(self):
+        return self.title

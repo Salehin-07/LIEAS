@@ -170,3 +170,19 @@ def show_enroll_requests(request):
     }
 
     return render(request, 'enroll_requests.html', context)
+
+def notice(request):
+    if request.method == 'POST' and 'delete_notice' in request.POST:
+        if request.user.is_authenticated and request.user.groups.filter(name='admin').exists():
+            notice_id = request.POST.get('notice_id')
+            notice_to_delete = get_object_or_404(Notice, id=notice_id)
+            notice_to_delete.delete()
+            return redirect('notice')  # Assuming 'notice' is your URL name
+    
+    all_notices = Notice.objects.all()
+    
+    context = {
+        "notices": all_notices,
+    }
+    
+    return render(request, 'notice.html', context)

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load auth_extras %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'custom/notice.css' %}">
+<title>Notice Board - School Portal</title>
+<meta name="description" content="School notices and announcements">
+{% endblock %}
+
+{% block body %}
+<div class="notice-container">
+    <div class="notice-header">
+        <h1 class="page-title">Notice Board</h1>
+        <p class="page-subtitle">Stay updated with the latest school announcements</p>
+    </div>
+
+    <div class="notices-grid">
+        {% for notice in notices %}
+        <div class="notice-card" data-notice-id="{{ notice.id }}">
+            <div class="notice-card-header">
+                <h3 class="notice-title">{{ notice.title }}</h3>
+                <span class="notice-date">{{ notice.date_posted|date:"M d, Y" }}</span>
+            </div>
+            
+            <div class="notice-content">
+                <p class="notice-description">{{ notice.description|truncatewords:30 }}</p>
+            </div>
+            
+            <div class="notice-actions">
+                <button class="btn-read-more" onclick="toggleNoticeDetails({{ notice.id }})">
+                    <i class="icon-expand"></i>
+                    Read More
+                </button>
+                {% if notice.pdf_link %}
+                <a href="{{ notice.pdf_link }}" target="_blank" class="btn-download">
+                    <i class="icon-download"></i>
+                    Download PDF
+                </a>
+                {% endif %}
+                
+                {% if request.user|is_admin %}
+                <form method="post" action="{% url 'notice' %}" class="delete-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="notice_id" value="{{ notice.id }}">
+                    <button type="submit" name="delete_notice" class="btn-delete">
+                        <i class="icon-delete"></i>
+                        Delete
+                    </button>
+                </form>
+                {% endif %}
+            </div>
+            
+            <!-- Expanded content (hidden by default) -->
+            <div class="notice-expanded" id="notice-expanded-{{ notice.id }}">
+                <div class="notice-full-content">
+                    <p>{{ notice.description|linebreaks }}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="no-notices">
+            <div class="no-notices-icon">📋</div>
+            <h3>No Notices Available</h3>
+            <p>There are currently no notices to display. Please check back later.</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination if needed -->
+    {% if is_paginated %}
+    <div class="pagination-container">
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+            <a href="?page=1" class="page-link">First</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">Previous</a>
+            {% endif %}
+            
+            <span class="page-info">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+            
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">Last</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+</div>
+
+<!-- Confirm dialog (hidden by default) -->
+<div class="confirm-dialog-overlay"></div>
+<div class="confirm-dialog"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'custom/notice.js' %}"></script>
+{% endblock %}
