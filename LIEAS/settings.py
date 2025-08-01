@@ -25,7 +25,7 @@ SECRET_KEY = config('SECRET_KEY', default=get_random_secret_key())
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
-  'https://lieas.onrender.com',
+  'lieas.onrender.com',
   "100.20.92.101",
   "44.225.181.72",
   "44.227.217.144",
