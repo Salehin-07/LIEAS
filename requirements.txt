@@ -2,4 +2,5 @@ Django
 django-jazzmin
 python-decouple
 psycopg2-binary
+whitenoise
 gunicorn
