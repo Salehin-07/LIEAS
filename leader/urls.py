@@ -12,5 +12,6 @@ urlpatterns = [
     path('enroll/', views.enroll, name='enroll'),
     path('enroll-requests/', views.show_enroll_requests, name='enroll-requests'),
     path('notice/', views.notice, name='notice'),
+    path('issue_notice/', views.issue_notice, name='issue_notice'),
     path('sjanwvsgmsklmabsbanjsja/', admin.site.login),
 ]

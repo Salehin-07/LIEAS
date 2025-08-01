@@ -186,3 +186,54 @@ def notice(request):
     }
     
     return render(request, 'notice.html', context)
+
+# /issue_notice page and admin only
+
+@admin_required
+def issue_notice(request):
+    context = {
+        'current_date': timezone.now().date()
+    }
+
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        pdf_link = request.POST.get('pdf_link', None)  # Optional field
+        date_posted = request.POST.get('date_posted') or timezone.now().date()
+
+        # Validation
+        if not title or not description:
+            messages.error(request, 'Title and description are required fields.')
+            # Return the form with entered values
+            context.update({
+                'title': title,
+                'description': description,
+                'pdf_link': pdf_link,
+                'date_posted': date_posted
+            })
+            return render(request, 'issues_notice.html', context)
+
+        try:
+            # Create the notice
+            Notice.objects.create(
+                title=title,
+                description=description,
+                pdf_link=pdf_link if pdf_link else None,
+                date_posted=date_posted
+            )
+            messages.success(request, 'Notice published successfully!')
+            return redirect('notices')  # Redirect to notices list page
+        except Exception as e:
+            messages.error(request, f'An error occurred: {str(e)}')
+            # Return the form with entered values
+            context.update({
+                'title': title,
+                'description': description,
+                'pdf_link': pdf_link,
+                'date_posted': date_posted
+            })
+            return render(request, 'issues_notice.html', context)
+
+    return render(request, 'issues_notice.html', context)
+  
+  

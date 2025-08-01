@@ -1,498 +1,88 @@
-/* Notice Page Styles */
-.notice-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 120px 20px 40px;
-    min-height: 100vh;
+/* Layout and spacing */
+.notice-page {
+    margin-top: 100px; /* because of nav */
+    max-width: 800px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Segoe UI', sans-serif;
 }
 
-/* Header Section */
-.notice-header {
-    text-align: center;
-    margin-bottom: 50px;
-    animation: fadeInDown 0.8s ease-out;
-}
-
+/* Title */
 .page-title {
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 10px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #222;
 }
 
-.page-subtitle {
-    font-size: 1.2rem;
-    color: #6c757d;
-    font-weight: 400;
-    margin: 0;
-}
-
-/* Notices Grid */
-.notices-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-/* Notice Card */
+/* Notice card */
 .notice-card {
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    padding: 25px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    position: relative;
-    overflow: hidden;
-}
-
-.notice-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-left: 6px solid #1976d2;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s;
 }
 
 .notice-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.notice-card:hover::before {
-    transform: scaleX(1);
-}
-
-/* Card Header */
-.notice-card-header {
+/* Header with title and delete */
+.notice-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 15px;
-    gap: 15px;
-}
-
-.notice-title {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin: 0;
-    line-height: 1.3;
-    flex: 1;
-}
-
-.notice-date {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
-
-/* Notice Content */
-.notice-content {
-    margin-bottom: 20px;
-}
-
-.notice-description {
-    color: #6c757d;
-    line-height: 1.6;
-    margin: 0;
-    font-size: 1rem;
-}
-
-/* Notice Actions */
-.notice-actions {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-}
-
-.btn-read-more,
-.btn-download,
-.btn-delete {
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    border: none;
-    outline: none;
 }
 
-.btn-read-more {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
+/* Description */
+.notice-description {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #444;
 }
 
-.btn-read-more:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+/* PDF link */
+.notice-pdf a {
+    text-decoration: none;
+    color: #1565c0;
+    font-weight: 500;
 }
 
-.btn-download {
-    background: #ffffff;
-    color: #667eea;
-    border: 2px solid #667eea;
+.notice-pdf a:hover {
+    text-decoration: underline;
 }
 
-.btn-download:hover {
-    background: #667eea;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+/* Date */
+.notice-date {
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 8px;
 }
 
+/* Delete button */
 .btn-delete {
-    background: #ffffff;
-    color: #e74c3c;
-    border: 2px solid #e74c3c;
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
 .btn-delete:hover {
-    background: #e74c3c;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+    background-color: #c62828;
 }
 
-.delete-form {
-    display: inline;
-}
-
-/* Icons */
-.icon-expand::before {
-    content: "▼";
-    font-size: 0.8rem;
-}
-
-.icon-download::before {
-    content: "⬇";
-    font-size: 0.9rem;
-}
-
-.icon-delete::before {
-    content: "✕";
-    font-size: 0.9rem;
-}
-
-/* Expanded Content */
-.notice-expanded {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-top: 1px solid #e9ecef;
-    margin-top: 20px;
-}
-
-.notice-expanded.expanded {
-    max-height: 500px;
-    padding-top: 20px;
-}
-
-.notice-full-content {
-    color: #495057;
-    line-height: 1.7;
-}
-
-/* No Notices State */
+/* No notices message */
 .no-notices {
-    grid-column: 1 / -1;
     text-align: center;
-    padding: 60px 20px;
-    color: #6c757d;
-}
-
-.no-notices-icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    opacity: 0.6;
-}
-
-.no-notices h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #495057;
-}
-
-/* Pagination */
-.pagination-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-}
-
-.pagination {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: white;
-    padding: 15px 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.page-link {
-    padding: 8px 16px;
-    background: #f8f9fa;
-    color: #667eea;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.page-link:hover {
-    background: #667eea;
-    color: white;
-    transform: translateY(-1px);
-}
-
-.page-info {
-    font-weight: 600;
-    color: #495057;
-    padding: 0 15px;
-}
-
-/* Loading Overlay */
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-}
-
-.loading-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #667eea;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-/* Confirm Dialog */
-.confirm-dialog-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    display: none;
-}
-
-.confirm-dialog-overlay.active {
-    display: block;
-}
-
-.confirm-dialog {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
-    z-index: 10000;
-    text-align: center;
-    max-width: 400px;
-    display: none;
-}
-
-.confirm-dialog.active {
-    display: block;
-}
-
-.confirm-dialog h3 {
-    margin-top: 0;
-    color: #2c3e50;
-}
-
-.confirm-dialog p {
-    color: #6c757d;
-    margin-bottom: 0;
-}
-
-.confirm-dialog-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.btn-confirm-delete {
-    padding: 10px 25px;
-    background: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-confirm-delete:hover {
-    background: #c0392b;
-    transform: translateY(-2px);
-}
-
-.btn-cancel-delete {
-    padding: 10px 25px;
-    background: #f8f9fa;
-    color: #495057;
-    border: none;
-    border-radius: 6px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-cancel-delete:hover {
-    background: #e9ecef;
-    transform: translateY(-2px);
-}
-
-/* Animations */
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes ripple {
-    to {
-        transform: scale(2);
-        opacity: 0;
-    }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Additional Styles */
-.icon-collapse::before {
-    content: "▲";
-    font-size: 0.8rem;
-    transition: transform 0.3s ease;
-}
-
-.notice-card:focus-within {
-    outline: 2px solid #667eea;
-    outline-offset: 2px;
-}
-
-.btn-read-more:focus,
-.btn-download:focus,
-.btn-delete:focus {
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .notice-container {
-        padding: 100px 15px 30px;
-    }
-    
-    .notices-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .page-title {
-        font-size: 2.2rem;
-    }
-    
-    .notice-card-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    
-    .notice-date {
-        align-self: flex-end;
-    }
-    
-    .notice-actions {
-        flex-direction: column;
-    }
-    
-    .btn-read-more,
-    .btn-download,
-    .btn-delete {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .notice-container {
-        padding: 90px 10px 20px;
-    }
-    
-    .notice-card {
-        padding: 20px;
-    }
-    
-    .page-title {
-        font-size: 1.8rem;
-    }
-    
-    .page-subtitle {
-        font-size: 1rem;
-    }
-    
-    .pagination {
-        padding: 10px 15px;
-        flex-wrap: wrap;
-    }
-    
-    .confirm-dialog {
-        width: 90%;
-        padding: 20px;
-    }
+    font-size: 1.2rem;
+    color: #999;
 }

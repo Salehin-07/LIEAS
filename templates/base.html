@@ -70,6 +70,7 @@
                         <li class="menu_item menu_mm"><a href="{% url 'enroll' %}">Enroll</a></li>
                         {% if user|is_admin %} 
                         <li class="menu_item menu_mm"><a href="{% url 'enroll-requests' %}">Enroll Requests</a></li>
+                        <li class="menu_item menu_mm"><a href="{% url 'issue_notice' %}">Issue notice</a></li>
                         {% endif %}
                     </ul>
 
