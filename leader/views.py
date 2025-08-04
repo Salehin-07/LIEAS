@@ -100,7 +100,7 @@ def teachers(request):
     'teachers':all_teachers,
   }
   
-  return render(request, 'teachers.html')
+  return render(request, 'teachers.html', context)
 
 def enroll(request):
     """ enroll page view """
