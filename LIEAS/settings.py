@@ -64,7 +64,7 @@ JAZZMIN_SETTINGS = {
 
     "show_sidebar": True,
     "navigation_expanded": True,
-    "theme": "flatly",  # You can also try: darkly, solar, litera, etc.
+    "theme": "solar",  # You can also try: darkly, solar, litera, etc.
 
     "icons": {
         "auth.User": "fas fa-user",
@@ -120,6 +120,7 @@ DATABASES = {
     }
   }
 
+ 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},

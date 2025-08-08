@@ -16,6 +16,37 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
     {% block head %}{% endblock %}
+    <style>
+      
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+    .logo img {
+        max-width: 45px;
+        max-height: 45px;
+    }
+}
+
+@media (max-width: 992px) {
+    .logo img {
+        max-width: 40px;
+        max-height: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        max-width: 35px;
+        max-height: 35px;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo img {
+        max-width: 30px;
+        max-height: 30px;
+    }
+}
+    </style>
 </head>
 <body>
     <div class="super_container">
@@ -202,23 +233,6 @@
     <script src="{% static 'plugins/scrollTo/jquery.scrollTo.min.js' %}"></script>
     <script src="{% static 'plugins/easing/easing.js' %}"></script>
     <script src="{% static 'js/custom.js' %}"></script>
-    
-    <!-- Logo Click Counter Script -->
-    <script>
-        $(document).ready(function() {
-            let clickCount = 0;
-            
-            $('#logo-clickable').on('click', function() {
-                clickCount++;
-                
-                if (clickCount >= 100) {
-                    // Redirect to admin login after 100 clicks
-                    window.location.href = "{% url 'admin:login' %}";
-                }
-            });
-        });
-    </script>
-    
     {% block extra_js %}{% endblock %}
 </body>
 </html>
