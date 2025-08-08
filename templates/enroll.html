@@ -120,6 +120,7 @@
                 <p class="lead text-muted">From primary to secondary education.</p>
             </div>
         </div>
+        {% for pri in price %}
         <div class="row">
             <div class="col-lg-4 mb-4">
                 <div class="program-card bg-white rounded shadow p-4">
@@ -134,7 +135,7 @@
                         <li><i class="fas fa-check text-success me-2"></i>Creative activities</li>
                     </ul>
                     <div class="program-price mb-3">
-                        <span class="price-amount">৩,০০০</span>
+                        <span class="price-amount">{{ pri.primary_fees }}</span>
                         <span class="price-period">টাকা/মাস</span>
                     </div>
                 </div>
@@ -152,7 +153,7 @@
                         <li><i class="fas fa-check text-success me-2"></i>Creative questioning method</li>
                     </ul>
                     <div class="program-price mb-3">
-                        <span class="price-amount">৪,০০০</span>
+                        <span class="price-amount">{{ pri.lower_secondary }}</span>
                         <span class="price-period">টাকা/মাস</span>
                     </div>
                 </div>
@@ -170,12 +171,13 @@
                         <li><i class="fas fa-check text-success me-2"></i>Model tests and exams</li>
                     </ul>
                     <div class="program-price mb-3">
-                        <span class="price-amount">৫,০০০</span>
+                        <span class="price-amount">{{ pri.secondary }}</span>
                         <span class="price-period">টাকা/মাস</span>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
 </section>
 

@@ -105,12 +105,14 @@ def teachers(request):
 def enroll(request):
     """ enroll page view """
     
+    all_price = Price.objects.all()
     all_info = Information.objects.all()
     all_classname = ClassName.objects.all()
     
     context = {
       'information':all_info,
       'classname':all_classname,
+      'price':all_price
     }
     
     
