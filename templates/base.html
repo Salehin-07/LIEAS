@@ -17,35 +17,196 @@
     <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
     {% block head %}{% endblock %}
     <style>
-      
-/* Responsive breakpoints */
-@media (max-width: 1200px) {
-    .logo img {
-        max-width: 45px;
-        max-height: 45px;
-    }
-}
+        /* Complete Responsive Logo Styles */
+        /* Base logo styles */
+        .logo img, .logo_container img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            transition: all 0.3s ease;
+            object-fit: contain;
+        }
 
-@media (max-width: 992px) {
-    .logo img {
-        max-width: 40px;
-        max-height: 40px;
-    }
-}
+        /* Header logo container alignment */
+        .logo_container .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-@media (max-width: 768px) {
-    .logo img {
-        max-width: 35px;
-        max-height: 35px;
-    }
-}
+        .logo_container .logo span {
+            font-weight: bold;
+            font-size: inherit;
+        }
 
-@media (max-width: 576px) {
-    .logo img {
-        max-width: 30px;
-        max-height: 30px;
-    }
-}
+        /* Extra Large Desktop screens (1400px and up) */
+        @media (min-width: 1400px) {
+            .header .logo img,
+            .footer .logo img {
+                max-width: 50px;
+                max-height: 50px;
+            }
+            
+            .header .logo span {
+                font-size: 18px;
+            }
+            
+            .footer .logo span {
+                font-size: 16px;
+            }
+        }
+
+        /* Large Desktop screens (1200px to 1399px) */
+        @media (min-width: 1200px) and (max-width: 1399px) {
+            .header .logo img,
+            .footer .logo img {
+                max-width: 45px;
+                max-height: 45px;
+            }
+            
+            .header .logo span {
+                font-size: 17px;
+            }
+            
+            .footer .logo span {
+                font-size: 15px;
+            }
+        }
+
+        /* Medium Desktop screens (992px to 1199px) */
+        @media (min-width: 992px) and (max-width: 1199px) {
+            .header .logo img,
+            .footer .logo img {
+                max-width: 40px;
+                max-height: 40px;
+            }
+            
+            .header .logo span {
+                font-size: 16px;
+            }
+            
+            .footer .logo span {
+                font-size: 14px;
+            }
+        }
+
+        /* Tablet screens (768px to 991px) */
+        @media (min-width: 768px) and (max-width: 991px) {
+            .header .logo img,
+            .footer .logo img {
+                max-width: 35px;
+                max-height: 35px;
+            }
+            
+            .header .logo span {
+                font-size: 15px;
+            }
+            
+            .footer .logo span {
+                font-size: 13px;
+            }
+        }
+
+        /* Large Mobile screens (576px to 767px) */
+        @media (min-width: 576px) and (max-width: 767px) {
+            .header .logo img,
+            .footer .logo img {
+                max-width: 32px;
+                max-height: 32px;
+            }
+            
+            .header .logo span {
+                font-size: 14px;
+            }
+            
+            .footer .logo span {
+                font-size: 12px;
+            }
+        }
+
+        /* Small Mobile screens (575px and below) */
+        @media (max-width: 575px) {
+            .header .logo img,
+            .footer .logo img {
+                max-width: 28px;
+                max-height: 28px;
+            }
+            
+            .header .logo span {
+                font-size: 13px;
+            }
+            
+            .footer .logo span {
+                font-size: 11px;
+            }
+        }
+
+        /* Specific adjustments for very small screens */
+        @media (max-width: 480px) {
+            .header .logo img,
+            .footer .logo img {
+                max-width: 25px;
+                max-height: 25px;
+            }
+            
+            .header .logo span {
+                font-size: 12px;
+            }
+            
+            .footer .logo span {
+                font-size: 10px;
+            }
+        }
+
+        /* Header specific adjustments */
+        .header .logo_container {
+            margin-right: 15px;
+        }
+
+        /* Footer specific adjustments */
+        .footer .logo_container .logo {
+            margin-bottom: 15px;
+        }
+
+        /* Ensure logo doesn't break layout on very small screens */
+        @media (max-width: 360px) {
+            .logo_container .logo {
+                gap: 5px;
+            }
+            
+            .header .logo img,
+            .footer .logo img {
+                max-width: 22px;
+                max-height: 22px;
+            }
+            
+            .header .logo span,
+            .footer .logo span {
+                font-size: 11px;
+            }
+        }
+
+        /* High DPI displays (Retina) */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .logo img, .logo_container img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
+        }
+
+        /* Additional utility classes */
+        .logo {
+            white-space: nowrap;
+        }
+
+        /* Ensure consistent alignment */
+        .header_content {
+            align-items: center;
+        }
+
+        .footer .logo_container {
+            text-align: left;
+        }
     </style>
 </head>
 <body>
