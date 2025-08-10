@@ -228,9 +228,15 @@
                         <ul class="main_nav_list">
                             <li class="main_nav_item"><a href="{% url 'home' %}">home</a></li>
                             <li class="main_nav_item"><a href="{% url 'about' %}">about us</a></li>
+                            <li class="main_nav_item"><a href="{% url 'notice' %}">notices</a></li>
                             <li class="main_nav_item"><a href="{% url 'courses' %}">courses</a></li>
+                            <li class="main_nav_item"><a href="{% url 'teachers' %}">teachers</a></li>
                             <li class="main_nav_item"><a href="{% url 'contact' %}">contact</a></li>
                             <li class="main_nav_item"><a href="{% url 'enroll' %}">enroll</a></li>
+                            {% if user|is_admin %} 
+                            <li class="main_nav_item"><a href="{% url 'enroll-requests' %}">enroll requests</a></li>
+                            <li class="main_nav_item"><a href="{% url 'issue_notice' %}">issue notice</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </nav>
