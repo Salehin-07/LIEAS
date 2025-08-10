@@ -1,4 +1,4 @@
-# 🎓 School Website Management System
+# 🎓 LIEAS Website Management System
 
 <div align="center">
 
@@ -10,7 +10,7 @@
 
 **A comprehensive Django-based web application designed for educational institutions to manage their online presence, student enrollments, faculty information, and academic content.**
 
-[🌐 **Live Demo**](https://lieas.onrender.com/) • [📚 **Documentation**](#-complete-documentation) • [🚀 **Quick Start**](#-installation)
+[📚 **Documentation**](#-complete-documentation) • [🚀 **Quick Start**](#-installation)
 
 ---
 
@@ -134,7 +134,7 @@ gunicorn
 | **📋 Enrollment Requests** | `/enroll-requests/` | Admin Only | View and manage applications |
 | **📢 Notice Board** | `/notice/` | Public | School announcements and updates |
 | **✏️ Issue Notice** | `/issue_notice/` | Admin Only | Create new notices |
-| **🔧 Admin Panel** | `/admin/` | Admin Only | Django-Jazzmin administrative interface |
+| **🔧 Admin Panel** | `/niwbsvsggababajhsgvwvsjshsvsbajkamakab sgsgsb-admin/` | Admin Only | Django-Jazzmin administrative interface |
 
 </details>
 
@@ -156,7 +156,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `link` (URLField): External website URL (max 250 chars)
 - `logo_class` (CharField): CSS class for icon display (max 50 chars)
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *Used in all pages to show all The social media links*
 
 ---
 
@@ -170,7 +170,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `title` (CharField): Service name (max 250 chars)
 - `description` (TextField): Detailed service explanation
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show what services we provide. Only home page.*
 
 #### **Testimonials Model**
 **Purpose:** Student/parent feedback and reviews
@@ -181,7 +181,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `testimonial_title` (CharField): Brief headline (max 250 chars)
 - `description` (TextField): Full testimonial content
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show that we have a valid reputation and testimonial only showing in home page.*
 
 #### **Events Model**
 **Purpose:** School events and activities management
@@ -194,7 +194,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `location` (CharField): Venue information (max 240 chars)
 - `description` (TextField): Event details
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show upcoming events in only home page.*
 
 ---
 
@@ -214,7 +214,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `course_fee` (IntegerField): Course cost (default: 0)
 - `author_bio` (TextField): Instructor background (default provided)
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show Courses in both course pages.*
 
 ---
 
@@ -229,7 +229,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `lower_secondary` (IntegerField): Lower secondary cost (default: 0)
 - `secondary` (IntegerField): Secondary education cost (default: 0)
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show proces for 3 departments.*
 
 #### **EnrollRequest Model**
 **Purpose:** Student enrollment applications
@@ -248,7 +248,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `additional_info` (TextField): Extra information (optional)
 - `status` (BooleanField): Application status (default: True)
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show enroll Requests to admin page and capture theme.*
 
 #### **ClassName Model**
 **Purpose:** Available class levels
@@ -258,7 +258,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `name` (CharField): Class designation (max 25 chars)
 - `value` (IntegerField): Ordering value (default: 0)
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To add classes or remove*
 
 ---
 
@@ -270,35 +270,35 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `title` (CharField): Address designation (max 250 chars, default: 'title')
 - `address` (TextField): Complete address (max 500 chars)
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show address.*
 
 #### **Phone Model**
 **Fields:**
 - `title` (CharField): Phone designation (max 250 chars, default: 'title')
 - `phone` (IntegerField): Contact number (default: 0)
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show phone numbers*
 
 #### **Email Model**
 **Fields:**
 - `title` (CharField): Email designation (max 250 chars, default: 'title')
 - `address` (EmailField): Email address (default: 'something123@gmail.com')
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show Emails.*
 
 #### **WorkTime Model**
 **Fields:**
 - `day` (CharField): Working days (max 250 chars, default: 'Saturday - Thursday')
 - `time` (TextField): Operating hours (default: '8:00 AM - 5:00 PM')
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show Office time.*
 
 #### **Map Model**
 **Fields:**
 - `title` (CharField): Map designation (max 250 chars, default: 'title')
 - `map_link` (URLField): Google Maps embed URL (default provided)
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show map of our school.*
 
 ---
 
@@ -314,7 +314,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `teacher_number` (IntegerField): Total faculty count (default: 10)
 - `awards` (IntegerField): Number of awards received (default: 1)
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show our info.*
 
 ---
 
@@ -327,7 +327,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `title` (CharField): Mission title (max 250 chars)
 - `description` (TextField): Mission description
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show our Missions*
 
 #### **History Model**
 **Fields:**
@@ -335,14 +335,14 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `title` (CharField): Event title (max 250 chars)
 - `description` (TextField): Event description
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show oyr history*
 
 #### **Values Model**
 **Fields:**
 - `title` (CharField): Value name (max 250 chars)
 - `description` (TextField): Value explanation
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show our values.*
 
 #### **Achievements Model**
 **Fields:**
@@ -350,7 +350,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `award_name` (CharField): Award name (max 250 chars)
 - `awarding_reason` (TextField): Award reason
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *Our Awards*
 
 ---
 
@@ -390,7 +390,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 - `pdf_link` (URLField): Document attachment (optional)
 - `date_posted` (DateField): Publication date (auto)
 
-**Usage:** *[To be customized by administrator]*
+**Usage:** *To show notices and manage by admins.*
 
 </details>
 
@@ -406,7 +406,7 @@ The system uses **20 comprehensive models** organized into logical categories:
 SECRET_KEY=your-django-secret-key
 DEBUG=True
 DATABASE_URL=postgresql://user:pass@localhost/dbname
-ALLOWED_HOSTS=localhost,127.0.0.1,yourdomain.com
+ALLOWED_HOSTS=[localhost,127.0.0.1,yourdomain.com]
 ```
 
 ### Database Configuration
@@ -423,10 +423,19 @@ DATABASES = {
 
 **Production (PostgreSQL):**
 ```python
-import dj_database_url
 DATABASES = {
-    'default': dj_database_url.parse(config('DATABASE_URL'))
-}
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME', default='postgres'),
+        'USER': config('DB_USER', default='postgres'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT', default='5432'),
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
+    }
+  }
 ```
 
 ### Django-Jazzmin Configuration
@@ -994,7 +1003,6 @@ tar -czf static_backup_$(date +%Y%m%d).tar.gz static/
 **Need Help?** We're here to assist!
 
 [![Documentation](https://img.shields.io/badge/📚-Documentation-blue?style=for-the-badge)](#-complete-documentation)
-[![Demo](https://img.shields.io/badge/🌐-Live%20Demo-green?style=for-the-badge)](https://lieas.onrender.com/)
 [![Issues](https://img.shields.io/badge/🐛-Report%20Bug-red?style=for-the-badge)](#)
 
 ---
